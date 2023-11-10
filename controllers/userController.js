@@ -8,11 +8,13 @@ export const register = async (req, res) => {
     try {
         const { name, email, password } = req.body
 
-        // const myCloud = await cloudinary.uploader.upload(req.body.avatar, {
-        //     folder: "edtech",
-        //     width: 250,
-        //     crop: "scale",
-        // });
+        const myCloud = await cloudinary.uploader.upload(req.body.avatar, {
+            folder: "edtech",
+            width: 250,
+            crop: "scale",
+        });
+
+        console.log("lll");
 
         //if user exists return error
         let user = await User.findOne({ email })  // shortHand for email:email
@@ -24,14 +26,11 @@ export const register = async (req, res) => {
             name,
             email,
             password,
+           
             avatar: {
-                public_id: "Saiyaj",
-                url: "https://robohash.org/hicveldicta.png?size=50x50&set=set1"
+                public_id: myCloud.public_id,
+                url: myCloud.secure_url
             }
-            // avatar: {
-            //     public_id: myCloud.public_id,
-            //     url: myCloud.secure_url
-            // }
         });
 
 
@@ -200,6 +199,7 @@ export const resetPassword = async (req, res, next) => {
 // get user details
 export const getUserDetails = async (req, res, next) => {
     try {
+        console.log("LLLLLL");
         const user = await User.findById(req.user._id);
         res.status(200).json({
             success: true,
