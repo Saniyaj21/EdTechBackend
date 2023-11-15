@@ -3,12 +3,10 @@
 import mongoose from 'mongoose';
 
 
-
 const videoSchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, "Please Enter Your Name"],
-
     },
     description: {
         type: String,
@@ -19,24 +17,19 @@ const videoSchema = new mongoose.Schema({
         required: [true, "Please Enter Your a description of video"],
     },
 
-
     relatedLinks: [
         {
             linkTitle: {
                 type: String,
-
             },
             link: {
                 type: String,
-
             },
-
         }
     ],
     playlist: {
         type: mongoose.Schema.ObjectId,
         ref: "Playlist",
-        required: true,
     },
     user: {
         type: mongoose.Schema.ObjectId,

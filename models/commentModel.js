@@ -4,19 +4,21 @@ import mongoose from 'mongoose';
 
 
 
-const playListSchema = new mongoose.Schema({
-    title: {
+const commentSchema = new mongoose.Schema({
+    text: {
         type: String,
         required: [true, "Please Enter Your Name"],
 
     },
-    description: {
-        type: String,
-        required: [true, "Please Enter Your a description of video"],
-    },
+    
     user: {
         type: mongoose.Schema.ObjectId,
         ref: "User",
+        required: true,
+    },
+    video: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Video",
         required: true,
     },
 
@@ -28,4 +30,4 @@ const playListSchema = new mongoose.Schema({
 });
 
 
-export const Playlist = mongoose.model("Playlist", playListSchema)
+export const Comment = mongoose.model("Comment", commentSchema)

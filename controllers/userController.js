@@ -199,7 +199,7 @@ export const resetPassword = async (req, res, next) => {
 // get user details
 export const getUserDetails = async (req, res, next) => {
     try {
-        console.log("LLLLLL");
+        
         const user = await User.findById(req.user._id);
         res.status(200).json({
             success: true,

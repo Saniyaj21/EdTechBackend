@@ -14,6 +14,8 @@ import { v2 as cloudinary } from 'cloudinary';
 import userRoute from './routes/userRoute.js';
 import playListRoute from './routes/playListRouter.js';
 import videoRoute from './routes/videoRouter.js';
+import commentRoute from './routes/commentRouter.js';
+import eventRoute from './routes/eventRouter.js';
 
 
 
@@ -58,6 +60,8 @@ server.use(
 server.use("/api/user", userRoute);
 server.use("/api/playlist", playListRoute);
 server.use("/api/video", videoRoute);
+server.use("/api/comment", commentRoute);
+server.use("/api/event", eventRoute);
 
 
 server.get("/", (req, res) => [
