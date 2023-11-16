@@ -14,7 +14,6 @@ export const register = async (req, res) => {
             crop: "scale",
         });
 
-        console.log("lll");
 
         //if user exists return error
         let user = await User.findOne({ email })  // shortHand for email:email
@@ -268,10 +267,10 @@ export const updateProfile = async (req, res) => {
     }
 };
 
-// Get all users(admin)
+// Get all users(admin) also sorting by CP points
 export const getAllUser = async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User.find().sort({ cp: -1 });;
 
         res.status(200).json({
             success: true,
