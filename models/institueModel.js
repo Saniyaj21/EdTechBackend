@@ -4,22 +4,20 @@ import mongoose from 'mongoose';
 
 
 
-const eventSchema = new mongoose.Schema({
-    title: {
+const instituteSchema = new mongoose.Schema({
+    name: {
         type: String,
+        unique: true,
         required: [true, "Please Enter Title"],
 
     },
-    description: {
-        type: String,
-        required: [true, "Please Enter Description"],
 
-    },
-    link: {
+    webLink: {
         type: String,
 
     },
-    avatar: {
+
+    logo: {
         public_id: {
             type: String,
             required: true,
@@ -29,21 +27,15 @@ const eventSchema = new mongoose.Schema({
             required: true,
         },
     },
-
-    participatingTeam: [{
-        type: mongoose.Schema.ObjectId,
-        ref: 'Team'
-    }],
-
-    winningTeam: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Team'
+    isVerified: {
+        type: Boolean,
+        default: false
     },
 
-    lastDate:{
-        type:Date
+    verifiedBy: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",   
     },
-
 
     creator: {
         type: mongoose.Schema.ObjectId,
@@ -60,4 +52,4 @@ const eventSchema = new mongoose.Schema({
 });
 
 
-export const Event = mongoose.model("Event", eventSchema)
+export const Institute = mongoose.model("Institute", instituteSchema)
